@@ -26,13 +26,20 @@ public class TemplateMappingXML {
 			printer.printf("  </EXPRMACRO>\n");
 			printer.printf("  <MAPPING DESCRIPTION =\"\" ISVALID =\"YES\" NAME =\"MPG_LDC_1020_0023_ICOTBC27_TPOSTCO\" OBJECTVERSION =\"1\" VERSIONNUMBER =\"1\">\n");
 			printer.printf("    <TRANSFORMATION DESCRIPTION =\"\" NAME =\"SQF_SRC_ICOTBC27_TPOSTCO\" OBJECTVERSION =\"1\" REUSABLE =\"NO\" TYPE =\"Source Qualifier\" VERSIONNUMBER =\"1\">\n");
+			printer.print("       <TRANSFORMFIELD DATATYPE =\"string\" DEFAULTVALUE =\"\" DESCRIPTION =\"\" NAME =\"CO_TIPO_STCO_CNVNO\" PICTURETEXT =\"\" PORTTYPE =\"INPUT/OUTPUT\" PRECISION =\"1\" SCALE =\"0\"/>\n");
+			printer.print("       <TRANSFORMFIELD DATATYPE =\"string\" DEFAULTVALUE =\"\" DESCRIPTION =\"\" NAME =\"DE_TIPO_STCO_CNVNO\" PICTURETEXT =\"\" PORTTYPE =\"INPUT/OUTPUT\" PRECISION =\"50\" SCALE =\"0\"/>\n");
 
 			
-			printer.print("    <TABLEATTRIBUTE NAME =\"Datetime Format\" VALUE =\"A  10 yyyy-mm-dd\"/>\n");
-			printer.print("    <TABLEATTRIBUTE NAME =\"Thousand Separator\" VALUE =\"None\"/>\n");
-			printer.print("    <TABLEATTRIBUTE NAME =\"Decimal Separator\" VALUE =\".\"/>\n");
-			printer.print("    <TABLEATTRIBUTE NAME =\"Line Endings\" VALUE =\"System default\"/>\n");
-			printer.print("  </TARGET>\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("\n");
+			printer.print("  </MAPPING>\n");
+
 			printer.print("</FOLDER>\n");
 			
 			printer.print("</REPOSITORY>\n");
