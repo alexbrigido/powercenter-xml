@@ -1,4 +1,4 @@
-package br.com.firstdecision.powercenter.xml;
+package br.com.firstdecision.powercenter.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

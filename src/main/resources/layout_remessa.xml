@@ -1,0 +1,48 @@
+<beanio xmlns="http://www.beanio.org/2012/03">
+
+  <!-- LAYOUT DA MENSAGEM DE CONSULTA DE CHAVE PIX -->
+  
+  <stream name="remessa_saida" format="fixedlength">
+    <record name="registro_segmento_a" class="br.gov.caixa.siacc.models.mq.entrada.MensagemConsultaChaveEntrada">
+    
+      <field name="convenio" 			length="6"  required="false" />
+      <field name="tipoCompromisso" 	length="2"  required="false" />
+      <field name="compromisso" 		length="4"  required="false" />
+      <field name="sequencialRemessa" 	length="6"  required="false" />
+      <field name="numeroLote" 			length="4"  required="false" />
+      <field name="numeroRegistro" 		length="5"  required="false" />
+      <field name="filler1" 			length="23" required="false" />
+      <field name="dataProcesso" 		length="26" required="false" />
+
+      <field name="iniciacao" 			length="3"  required="false" />
+      <field name="nomeChavePix" 		length="30" required="false" />
+      <field name="valorChavePix" 		length="30" required="false" />
+      <field name="dataPagamento" 		length="8"  required="false" />
+      <field name="valorPagamento" 		length="15" required="false" />
+      <field name="cnpj" 				length="14" required="false" />
+      <field name="filler2" 			length="7"  required="false" />
+      
+      <!-- DADOS DO AGENDAMENTO -->
+      <field name="dataPrevisto" 				length="10"  required="false" />
+      <field name="formaLancamento" 			length="2"   required="false" />
+      <field name="codigoCompensacao" 			length="3"   required="false" />
+      <field name="agenciaCompromisso" 			length="4"   required="false" />
+      <field name="operacaoCompromisso" 		length="3"   required="false" />
+      <field name="contaCompromisso" 			length="12"  required="false" />
+      <field name="numeroBancoFavorecido" 		length="3"   required="false" />
+      <field name="numeroAgenciaFavorecido" 	length="4"   required="false" />
+      <field name="numeroOperacaoFavorecido" 	length="4"   required="false" />
+      <field name="numeroContaFavorecido" 		length="13"  required="false" />
+      <field name="agndoCliente" 				length="6"   required="false" />
+      <field name="campoA32" 					length="40"  required="false" />
+      <field name="campoB07Tipo" 				length="1"   required="false" />
+      <field name="campoB08Cpf" 				length="14"  required="false" />
+      <field name="campoB09I10" 				length="35"  required="false" />
+      <field name="campoB10I11" 				length="60"  required="false" />
+      <field name="campoB11I12" 				length="100" required="false" />
+      <field name="filler3" 					length="20"  required="false" />
+      
+    </record>
+  </stream>
+  
+</beanio>
