@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.UUID;
 
+import br.com.firstdecision.powercenter.util.Util;
+
 public class TemplateSourceXML {
 
 	public void gerarSourceXML(String sigla, String nomeTabela, Collection<CamposExcel> campos) {

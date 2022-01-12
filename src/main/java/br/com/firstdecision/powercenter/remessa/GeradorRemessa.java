@@ -1,41 +1,49 @@
 package br.com.firstdecision.powercenter.remessa;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.beanio.BeanIOConfigurationException;
 import org.beanio.BeanWriter;
 import org.beanio.StreamFactory;
 
 import br.com.firstdecision.powercenter.util.DataUtil;
-import br.com.firstdecision.powercenter.window.JanelaPrincipal;
 import br.com.firstdecision.powercenter.xml.CamposChavePixExcel;
 
 public class GeradorRemessa {
 	
 	
-	public void gerarRemessa(List<CamposChavePixExcel> chaves) throws BeanIOConfigurationException, IOException {
+	public void gerarRemessa(List<CamposChavePixExcel> chaves, String convenio, String compromisso, String data, String nsa, String qtde) throws Exception {
 		
-		// create a BeanIO StreamFactory
         StreamFactory factory = StreamFactory.newInstance();
-        // load the mapping file from the working directory
         InputStream is = getClass().getClassLoader().getResourceAsStream("layout_remessa.xml");
 		factory.load(is);
 
-        // create a BeanWriter to write to "output.csv"
-        BeanWriter outSegA = factory.createWriter("registro_segmento_a", new File("PIX8_"+DataUtil.localDateTimeToString(LocalDateTime.now())));
-        BeanWriter outSegB = factory.createWriter("registro_segmento_b", new File("PIX8_"+DataUtil.localDateTimeToString(LocalDateTime.now())));
+        BeanWriter out = factory.createWriter("registro_remessa", new File("PIX8_"+DataUtil.localDateTimeToString(LocalDateTime.now())));
         
-        for(CamposChavePixExcel chave : chaves) {
+        out.write("header_arquivo", new HeaderArquivo(convenio, nsa));
+        out.write("header_lote", new HeaderLote(convenio));
+        
+        Integer quantidade = Integer.parseInt(qtde);
+        
+        for(int i=0; i<quantidade; i++) {
+        	int index = i > chaves.size() ? i - chaves.size() : i;
+        	CamposChavePixExcel chave = chaves.get(index);
+        	
         	RegistroSegmentoA registro = new RegistroSegmentoA();
         	registro.setNomeFavor(chave.getChave());
-        	outSegA.write(registro);
+        	registro.setDataEfetivPagto(data);
+        	registro.setDataPagto(data);
+        	out.write("registro_segmento_a", registro);
+        	
         }
-        outSegA.flush();
-        outSegA.close();
+        
+        out.write("trailer_lote", new TrailerLote(quantidade));
+        out.write("trailer_arquivo", new TrailerArquivo(quantidade));
+        
+        out.flush();
+        out.close();
 	}
 	
 }

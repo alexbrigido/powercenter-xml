@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.firstdecision.powercenter.util.Util;
+
 public class TemplateTargetXML {
 	
 	public void gerarTargetXML(String sigla, String nomeTabela, List<CamposExcel> campos) throws IOException {

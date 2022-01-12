@@ -1,47 +1,73 @@
 package br.com.firstdecision.powercenter.window;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
+
+import br.com.firstdecision.powercenter.remessa.GeradorRemessa;
+import br.com.firstdecision.powercenter.util.DataUtil;
+import br.com.firstdecision.powercenter.util.StringUtil;
+import br.com.firstdecision.powercenter.xml.CamposChavePixExcel;
+import br.com.firstdecision.powercenter.xml.LeitorExcel;
 
 public class JanelaPrincipal extends JFrame {
 
-	public void init(ActionListener action) {
+    JFormattedTextField jFormattedTextConvenio;
+    JFormattedTextField jFormattedTextCompromisso; 
+    JFormattedTextField jFormattedTextTipoCompromisso; 
+    JFormattedTextField jFormattedTextData;
+    JFormattedTextField jFormattedTextNsa;
+    JFormattedTextField jFormattedTextQtde;
+    
+	public void init() {
 		Container janela = getContentPane();
 		setLayout(null);
-		setTitle("Gerador de Remessas");
+		setTitle("Gerador de Remessas CNAB 240");
 		
 		// Define os rótulos dos botões
-		JLabel labelCep = new JLabel("Convênio: ");
-		JLabel labelTel = new JLabel("Compromisso: ");
-		JLabel labelCpf = new JLabel("CPF: ");
+		JLabel labelConvenio = new JLabel("Convênio: ");
+		JLabel labelCompromisso = new JLabel("Compromisso: ");
+		JLabel labelTipoComp = new JLabel("Tipo Compromisso: ");
 		JLabel labelData = new JLabel("Data Pagamento: ");
-		labelCep.setBounds(50, 40, 100, 20);
-		labelTel.setBounds(50, 80, 100, 20);
-		labelCpf.setBounds(50, 120, 100, 20);
+		JLabel labelNsa = new JLabel("Sequencial Remessa (NSA): ");
+		JLabel labelQtde = new JLabel("Quantidade Registros: ");
+		labelConvenio.setBounds(50, 40, 100, 20);
+		labelCompromisso.setBounds(50, 80, 100, 20);
+		labelTipoComp.setBounds(50, 120, 120, 20);
 		labelData.setBounds(50, 160, 100, 20);
+		labelNsa.setBounds(50, 200, 180, 20);
+		labelQtde.setBounds(50, 240, 150, 20);
 
 		// Define as máscaras
-		MaskFormatter mascaraCep = null;
-		MaskFormatter mascaraTel = null;
-		MaskFormatter mascaraCpf = null;
+		MaskFormatter mascaraConvenio = null;
+		MaskFormatter mascaraCompromisso = null;
+		MaskFormatter mascaraTipoComp = null;
 		MaskFormatter mascaraData = null;
+		MaskFormatter mascaraNsa = null;
+		MaskFormatter mascaraQtde = null;
 
 		try {
-			mascaraCep = new MaskFormatter("######");
-			mascaraTel = new MaskFormatter("####");
-			mascaraCpf = new MaskFormatter("#########-##");
+			mascaraConvenio = new MaskFormatter("######");
+			mascaraCompromisso = new MaskFormatter("####");
+			mascaraTipoComp = new MaskFormatter("##");
 			mascaraData = new MaskFormatter("##/##/####");
-			mascaraCep.setPlaceholderCharacter('_');
-			mascaraTel.setPlaceholderCharacter('_');
-			mascaraCpf.setPlaceholderCharacter('_');
+			mascaraNsa = new MaskFormatter("######");
+			mascaraConvenio.setPlaceholderCharacter('_');
+			mascaraCompromisso.setPlaceholderCharacter('_');
+			mascaraTipoComp.setPlaceholderCharacter('_');
 			mascaraData.setPlaceholderCharacter('_');
+			mascaraNsa.setPlaceholderCharacter('_');
 		} catch (ParseException excp) {
 			System.err.println("Erro na formatação: " + excp.getMessage());
 			System.exit(-1);
@@ -49,34 +75,82 @@ public class JanelaPrincipal extends JFrame {
 		
 		
         //Seta as máscaras nos objetos JFormattedTextField
-        JFormattedTextField jFormattedTextCep = new JFormattedTextField(mascaraCep);
-        JFormattedTextField jFormattedTextTel = new JFormattedTextField(mascaraTel);
-        JFormattedTextField jFormattedTextCpf = new JFormattedTextField(mascaraCpf);
-        JFormattedTextField jFormattedTextData = new JFormattedTextField(mascaraData);
-        jFormattedTextCep.setBounds(200,40,100,20);
-        jFormattedTextTel.setBounds(200,80,100,20);
-        jFormattedTextCpf.setBounds(200,120,100,20);
-        jFormattedTextData.setBounds(200,160,100,20);
+        jFormattedTextConvenio = new JFormattedTextField(mascaraConvenio);
+        jFormattedTextCompromisso = new JFormattedTextField(mascaraCompromisso);
+        jFormattedTextTipoCompromisso = new JFormattedTextField(mascaraTipoComp);
+        jFormattedTextData = new JFormattedTextField(mascaraData);
+        jFormattedTextNsa = new JFormattedTextField(mascaraNsa);
+        jFormattedTextQtde = new JFormattedTextField(mascaraQtde);
+        jFormattedTextConvenio.setBounds(240,40,100,20);
+        jFormattedTextCompromisso.setBounds(240,80,100,20);
+        jFormattedTextTipoCompromisso.setBounds(240,120,100,20);
+        jFormattedTextData.setBounds(240,160,100,20);
+        jFormattedTextNsa.setBounds(240,200,100,20);
+        jFormattedTextQtde.setBounds(240,240,100,20);
+        
+        // valores default
+        jFormattedTextConvenio.setText("600500");
+        jFormattedTextCompromisso.setText("0001");
+        jFormattedTextTipoCompromisso.setText("01");
+        jFormattedTextNsa.setText("000001");
+        jFormattedTextQtde.setText("10");
+        jFormattedTextData.setText(DataUtil.localDateToString(LocalDate.now(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         //Adiciona os rótulos e os campos de textos com máscaras na tela
-        janela.add(labelCep);
-        janela.add(labelTel);
-        janela.add(labelCpf);
+        janela.add(labelConvenio);
+        janela.add(labelTipoComp);
+        janela.add(labelCompromisso);
         janela.add(labelData);
-        janela.add(jFormattedTextCep);
-        janela.add(jFormattedTextTel);
-        janela.add(jFormattedTextCpf);
+        janela.add(labelNsa);
+        janela.add(labelQtde);
+        janela.add(jFormattedTextConvenio);
+        janela.add(jFormattedTextTipoCompromisso);
+        janela.add(jFormattedTextCompromisso);
         janela.add(jFormattedTextData);
+        janela.add(jFormattedTextNsa);
+        janela.add(jFormattedTextQtde);
         
         JButton botao = new JButton("GERAR");
-        botao.setBounds(150, 200, 100, 20);
-        botao.addActionListener(action);
+        botao.setBounds(150, 280, 100, 20);
+        botao.addActionListener(action());
         janela.add(botao);
         
-        setSize(500, 300);
+        setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
 	}
 
+	public ActionListener action() {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				perform(e);				
+			}
+			private void perform(ActionEvent evt) {
+
+					try {
+						
+						LeitorExcel excel = new LeitorExcel();
+						GeradorRemessa remessa = new GeradorRemessa();
+						
+						System.out.println("Lendo arquivo Excel...");
+						List<CamposChavePixExcel> chaves = excel.gerarListaCampos("CHAVES-PIX.xlsx");
+
+						System.out.println("Gerando Remessa...");
+						String convenio = StringUtil.completeAEsquerda(jFormattedTextConvenio.getText(), 6, '0');
+						String compromisso = StringUtil.completeAEsquerda(jFormattedTextCompromisso.getText(), 4, '0');
+						String data = DataUtil.formatarArquivo(jFormattedTextData.getText());
+						String nsa = StringUtil.completeAEsquerda(jFormattedTextNsa.getText(), 6, '0');
+						String qtde = jFormattedTextQtde.getText();
+						remessa.gerarRemessa(chaves, convenio, compromisso, data, nsa, qtde);
+						
+						JOptionPane.showMessageDialog(null, "REMESSA GERADA COM SUCESSO.");
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "ERRO: "+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+						e.printStackTrace();
+					}
+			}
+		};
+	}
+	
 }

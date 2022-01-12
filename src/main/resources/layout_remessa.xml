@@ -1,48 +1,75 @@
 <beanio xmlns="http://www.beanio.org/2012/03">
 
-  <!-- LAYOUT DA MENSAGEM DE CONSULTA DE CHAVE PIX -->
+  <!-- LAYOUT DO ARQUIVO DE REMESSA -->
   
-  <stream name="remessa_saida" format="fixedlength">
-    <record name="registro_segmento_a" class="br.gov.caixa.siacc.models.mq.entrada.MensagemConsultaChaveEntrada">
+  <stream name="registro_remessa" format="fixedlength">
+    	
+    <record name="header_arquivo" class="br.com.firstdecision.powercenter.remessa.HeaderArquivo">
+    	<field name="comeco" length="32" />
+    	<field name="convenio" length="6" />
+    	<field name="meio" length="105" />
+    	<field name="dataHora" length="14" />
+    	<field name="nsa" length="6" />
+    	<field name="fim" length="77" />
+    </record>
     
-      <field name="convenio" 			length="6"  required="false" />
-      <field name="tipoCompromisso" 	length="2"  required="false" />
-      <field name="compromisso" 		length="4"  required="false" />
-      <field name="sequencialRemessa" 	length="6"  required="false" />
-      <field name="numeroLote" 			length="4"  required="false" />
-      <field name="numeroRegistro" 		length="5"  required="false" />
-      <field name="filler1" 			length="23" required="false" />
-      <field name="dataProcesso" 		length="26" required="false" />
+    <record name="header_lote" class="br.com.firstdecision.powercenter.remessa.HeaderLote">
+    	<field name="comeco" length="32" />
+    	<field name="convenio" length="6" />
+    	<field name="fim" length="202" />
+    </record>
+    
+    <record name="registro_segmento_a" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoA">
 
-      <field name="iniciacao" 			length="3"  required="false" />
-      <field name="nomeChavePix" 		length="30" required="false" />
-      <field name="valorChavePix" 		length="30" required="false" />
-      <field name="dataPagamento" 		length="8"  required="false" />
-      <field name="valorPagamento" 		length="15" required="false" />
-      <field name="cnpj" 				length="14" required="false" />
-      <field name="filler2" 			length="7"  required="false" />
-      
-      <!-- DADOS DO AGENDAMENTO -->
-      <field name="dataPrevisto" 				length="10"  required="false" />
-      <field name="formaLancamento" 			length="2"   required="false" />
-      <field name="codigoCompensacao" 			length="3"   required="false" />
-      <field name="agenciaCompromisso" 			length="4"   required="false" />
-      <field name="operacaoCompromisso" 		length="3"   required="false" />
-      <field name="contaCompromisso" 			length="12"  required="false" />
-      <field name="numeroBancoFavorecido" 		length="3"   required="false" />
-      <field name="numeroAgenciaFavorecido" 	length="4"   required="false" />
-      <field name="numeroOperacaoFavorecido" 	length="4"   required="false" />
-      <field name="numeroContaFavorecido" 		length="13"  required="false" />
-      <field name="agndoCliente" 				length="6"   required="false" />
-      <field name="campoA32" 					length="40"  required="false" />
-      <field name="campoB07Tipo" 				length="1"   required="false" />
-      <field name="campoB08Cpf" 				length="14"  required="false" />
-      <field name="campoB09I10" 				length="35"  required="false" />
-      <field name="campoB10I11" 				length="60"  required="false" />
-      <field name="campoB11I12" 				length="100" required="false" />
-      <field name="filler3" 					length="20"  required="false" />
+		<field name="filler1" length="8" />
+		<field name="lote" length="5" />
+		<field name="codSeqReg" length="1" />
+		<field name="tipoMov" length="1" />
+		<field name="codInstrMov" length="2" />
+		<field name="codCompens" length="3" />
+		<field name="bancoFavorecido" length="3" />
+		<field name="codAgencia" length="5" />
+		<field name="dvAgencia" length="1" />
+		<field name="numConta" length="12" />
+		<field name="devNumConta" length="1" />
+		<field name="dvAgeConta" length="1" />
+		<field name="nomeFavor" length="30" />
+		<field name="numAtribEmpr" length="6" />
+		<field name="filler2" length="13" />
+		<field name="tipoConta" length="1" />
+		<field name="dataPagto" length="8" />
+		<field name="tipoMoeda" length="3" />
+		<field name="qtdMoeda" length="15" />
+		<field name="valorPagto" length="15" />
+		<field name="numAtribBanco" length="9" />
+		<field name="filler3" length="3" />
+		<field name="qtdParcelas" length="2" />
+		<field name="indBloqueio" length="1" />
+		<field name="formParc" length="1" />
+		<field name="numPeriodo" length="2" />
+		<field name="numParcela" length="2" />
+		<field name="dataEfetivPagto" length="8" />
+		<field name="valorEfetivPagto" length="15" />
+		<field name="informacao2" length="40" />
+		<field name="codFinaliDoc" length="2" />
+		<field name="usoFebraban" length="10" />
+		<field name="avisoFavor" length="1" />
+		<field name="ocor" length="10" />
       
     </record>
+    
+    <record name="trailer_lote" class="br.com.firstdecision.powercenter.remessa.TrailerLote">
+    	<field name="comeco" length="17" />
+    	<field name="quantidade" length="6" type="int" padding="0" justify="right" />
+    	<field name="fim" length="217" />
+    </record>
+    
+    <record name="trailer_arquivo" class="br.com.firstdecision.powercenter.remessa.TrailerArquivo">
+    	<field name="comeco" length="23" />
+    	<field name="quantidade" length="6" type="int" padding="0" justify="right" />
+    	<field name="fim" length="211" />
+    </record>
+    
   </stream>
-  
+
 </beanio>

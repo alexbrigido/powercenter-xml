@@ -52,6 +52,10 @@ public class DataUtil {
         return LocalDate.parse(value, DATA_HORA_PATTERN);
     }
 
+    public static LocalDate stringToLocalDate(String value, String pattern) {
+        return LocalDate.parse(value, DateTimeFormatter.ofPattern(pattern));
+    }
+    
     public static LocalDateTime stringToLocalDateTime(String value) {
         return LocalDateTime.parse(value, DATA_HORA_PATTERN);
     }
@@ -170,6 +174,11 @@ public class DataUtil {
 	
 	public static LocalDate dateToLocalDate(Date dateToConvert) {
 	    return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+	}
+
+	public static String formatarArquivo(String dataOriginal) {
+		LocalDate date = stringToLocalDate(dataOriginal, "dd/MM/yyyy");
+		return localDateToString(date, DateTimeFormatter.ofPattern("yyyyMMdd"));
 	}
 
 
