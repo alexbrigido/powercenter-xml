@@ -95,8 +95,8 @@ public class GeradorRemessa {
 	
 	private String resolverCampoB11(String forma, String tipo) {
 		switch (Integer.parseInt(forma)) {
-		case 1:return "E-MAIL";
-		case 2:return "TELEFONE";
+		case 1:return "TELEFONE";
+		case 2:return "E-MAIL";
 		case 3:return tipo;
 		case 4:return "CHAVE ALEATORIA";
 		case 5:return "CONTA";
