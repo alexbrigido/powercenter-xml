@@ -58,7 +58,7 @@ public class GeradorRemessa {
         	RegistroSegmentoB regb = new RegistroSegmentoB();
         	regb.setFormaIniciacao(resolverIniciacao(chave.getTipo()));
         	regb.setInformacao10Txid("004".equals(regb.getFormaIniciacao()) ? " " : chave.getTipo());
-        	regb.setInformacao11IdPagamento(chave.getTipo());
+        	regb.setInformacao11IdPagamento(resolverCampoB11(regb.getFormaIniciacao(), chave.getTipo()));
         	regb.setInformacao12IdFavorecidoChavePix(chave.getChave());
 			regb.setSequencialRegistro(++sequencial);
         	out.write("registro_segmento_b", regb);
@@ -91,6 +91,17 @@ public class GeradorRemessa {
 			return "004";
 		}
 		return "005";
+	}
+	
+	private String resolverCampoB11(String forma, String tipo) {
+		switch (Integer.parseInt(forma)) {
+		case 1:return "E-MAIL";
+		case 2:return "TELEFONE";
+		case 3:return tipo;
+		case 4:return "CHAVE ALEATORIA";
+		case 5:return "CONTA";
+		default: return "CONTA";
+		}
 	}
 	
 }
