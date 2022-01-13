@@ -9,10 +9,10 @@ public class HeaderArquivo {
 
 	private String comeco = "10400000         200394445018817";
 	private String convenio;
-	private String meio = "01PP6301PP    0016790001000020321 MINISTERIO DA EDUCACAO        CAIXA ECONOMICA FEDERAL                 0";
+	private String meio = "01PP6301PP    0016790001000020321 MINISTERIO DA EDUCACAO        CAIXA ECONOMICA FEDERAL                 1";
 	private String dataHora;
 	private String nsa;
-	private String fim = "240    12310202202391322011108000000PIX                 15000000055022MS1810 ";
+	private String fim = "08000000PIX                 08000000PIX                 15000000055022MS1810 ";
 	
 	public HeaderArquivo(String convenio, String nsa) {
 		this.convenio = convenio;

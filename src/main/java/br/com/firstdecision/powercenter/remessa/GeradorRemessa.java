@@ -29,7 +29,8 @@ public class GeradorRemessa {
         out.write("header_lote", new HeaderLote(convenio));
         
         Integer quantidade = Integer.parseInt(qtde.trim());
-        Integer sequencial = 3;
+        Integer sequencial = 1;
+        Integer soma = 0;
         for(int i=0; i<quantidade; i++) {
         	CamposChavePixExcel chave = getChave(chaves, i);
         	
@@ -39,6 +40,7 @@ public class GeradorRemessa {
         	registro.setDataPagto(data);
         	Integer val = RandomUtil.random(100000);
         	String valor = StringUtil.completeAEsquerda(String.valueOf(val), 15, '0');
+        	soma+=val;
         	registro.setValorEfetivPagto(valor);
         	registro.setValorPagto(valor);
         	registro.setNsr(sequencial);
@@ -63,8 +65,8 @@ public class GeradorRemessa {
         	sequencial++;
         }
         
-        out.write("trailer_lote", new TrailerLote(quantidade));
-        out.write("trailer_arquivo", new TrailerArquivo(quantidade));
+        out.write("trailer_lote", new TrailerLote((sequencial + 1), soma));
+        out.write("trailer_arquivo", new TrailerArquivo(sequencial + 3));
         
         out.flush();
         out.close();
