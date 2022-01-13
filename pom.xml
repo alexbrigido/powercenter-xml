@@ -7,20 +7,11 @@
 	<packaging>jar</packaging>
 	<version>1.0.0</version>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
 	<dependencies>
-		<!-- Leitura e escrita de XML -->
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>1.4.9</version>
-		</dependency>
-
-		<!-- Ler arquivos Microsoft -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>4.1.1</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
@@ -37,5 +28,36 @@
 			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>gerador_remessa</finalName>
+	  <plugins>
+
+	<plugin>
+		<artifactId>maven-assembly-plugin</artifactId>
+		<executions>
+			<execution>
+				<phase>package</phase>
+				<goals>
+					<goal>single</goal>
+				</goals>
+			</execution>
+		</executions>
+		<configuration>
+			<descriptorRefs>
+				<descriptorRef>jar-with-dependencies</descriptorRef>
+			</descriptorRefs>
+	        <archive>
+	          <manifest>
+	            <addClasspath>true</addClasspath>
+	            <classpathPrefix>lib/</classpathPrefix>
+	            <mainClass>br.com.firstdecision.powercenter.xml.Main</mainClass>
+	          </manifest>
+	        </archive>
+		</configuration>
+	</plugin>
+	
+	  </plugins>
+	</build>
 
 </project>

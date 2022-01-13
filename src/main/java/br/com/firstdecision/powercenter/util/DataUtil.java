@@ -181,5 +181,11 @@ public class DataUtil {
 		return localDateToString(date, DateTimeFormatter.ofPattern("yyyyMMdd"));
 	}
 
+	public static String removerBarras(String data) {
+		if(data == null || data.trim().isEmpty()) {
+			return localDateToString(LocalDate.now(), DateTimeFormatter.ofPattern("ddMMyyyy"));
+		}
+		return data.replaceAll("/", "");
+	}
 
 }

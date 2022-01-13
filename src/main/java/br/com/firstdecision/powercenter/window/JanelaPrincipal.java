@@ -3,6 +3,10 @@ package br.com.firstdecision.powercenter.window;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +37,7 @@ public class JanelaPrincipal extends JFrame {
 	public void init() {
 		Container janela = getContentPane();
 		setLayout(null);
-		setTitle("Gerador de Remessas CNAB 240");
+		setTitle("Gerador de Remessas CNAB 240 - PIX");
 		
 		// Define os rótulos dos botões
 		JLabel labelConvenio = new JLabel("Convênio: ");
@@ -54,20 +58,16 @@ public class JanelaPrincipal extends JFrame {
 		MaskFormatter mascaraCompromisso = null;
 		MaskFormatter mascaraTipoComp = null;
 		MaskFormatter mascaraData = null;
-		MaskFormatter mascaraNsa = null;
-		MaskFormatter mascaraQtde = null;
 
 		try {
 			mascaraConvenio = new MaskFormatter("######");
 			mascaraCompromisso = new MaskFormatter("####");
 			mascaraTipoComp = new MaskFormatter("##");
 			mascaraData = new MaskFormatter("##/##/####");
-			mascaraNsa = new MaskFormatter("######");
 			mascaraConvenio.setPlaceholderCharacter('_');
 			mascaraCompromisso.setPlaceholderCharacter('_');
 			mascaraTipoComp.setPlaceholderCharacter('_');
 			mascaraData.setPlaceholderCharacter('_');
-			mascaraNsa.setPlaceholderCharacter('_');
 		} catch (ParseException excp) {
 			System.err.println("Erro na formatação: " + excp.getMessage());
 			System.exit(-1);
@@ -79,8 +79,8 @@ public class JanelaPrincipal extends JFrame {
         jFormattedTextCompromisso = new JFormattedTextField(mascaraCompromisso);
         jFormattedTextTipoCompromisso = new JFormattedTextField(mascaraTipoComp);
         jFormattedTextData = new JFormattedTextField(mascaraData);
-        jFormattedTextNsa = new JFormattedTextField(mascaraNsa);
-        jFormattedTextQtde = new JFormattedTextField(mascaraQtde);
+        jFormattedTextNsa = new JFormattedTextField();
+        jFormattedTextQtde = new JFormattedTextField();
         jFormattedTextConvenio.setBounds(240,40,100,20);
         jFormattedTextCompromisso.setBounds(240,80,100,20);
         jFormattedTextTipoCompromisso.setBounds(240,120,100,20);
@@ -134,19 +134,22 @@ public class JanelaPrincipal extends JFrame {
 						GeradorRemessa remessa = new GeradorRemessa();
 						
 						System.out.println("Lendo arquivo Excel...");
-						List<CamposChavePixExcel> chaves = excel.gerarListaCampos("CHAVES-PIX.xlsx");
+						Path path = Paths.get("");
+						String fileExcel = path.toAbsolutePath().toString() + File.separator + "CHAVES-PIX.xlsx";
+						System.out.println(fileExcel);
+						List<CamposChavePixExcel> chaves = excel.gerarListaCampos(fileExcel);
 
 						System.out.println("Gerando Remessa...");
 						String convenio = StringUtil.completeAEsquerda(jFormattedTextConvenio.getText(), 6, '0');
 						String compromisso = StringUtil.completeAEsquerda(jFormattedTextCompromisso.getText(), 4, '0');
-						String data = DataUtil.formatarArquivo(jFormattedTextData.getText());
+						String data = DataUtil.removerBarras(jFormattedTextData.getText());
 						String nsa = StringUtil.completeAEsquerda(jFormattedTextNsa.getText(), 6, '0');
 						String qtde = jFormattedTextQtde.getText();
 						remessa.gerarRemessa(chaves, convenio, compromisso, data, nsa, qtde);
 						
-						JOptionPane.showMessageDialog(null, "REMESSA GERADA COM SUCESSO.");
+						JOptionPane.showMessageDialog(null, "REMESSA GERADA COM SUCESSO.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "ERRO: "+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 						e.printStackTrace();
 					}
 			}

@@ -92,14 +92,15 @@ public class StringUtil {
     }
 
     public static String completeAEsquerda(String value, int quantidadeMax, char c) {
-        if (value == null || value.length() >= quantidadeMax) {
+        if (value == null || value.trim().replaceAll("_", "").length() >= quantidadeMax) {
             return value;
         }
+        String cleanValue = value.trim().replaceAll("_", "");
         StringBuilder sb = new StringBuilder();
-        for (int i = value.length(); i < quantidadeMax; i++) {
+        for (int i = cleanValue.length(); i < quantidadeMax; i++) {
             sb.append(c);
         }
-        sb.append(value);
+        sb.append(cleanValue);
         return sb.toString();
     }
 

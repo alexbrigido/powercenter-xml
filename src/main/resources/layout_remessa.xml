@@ -20,10 +20,9 @@
     </record>
     
     <record name="registro_segmento_a" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoA">
-
 		<field name="filler1" length="8" />
-		<field name="lote" length="5" />
-		<field name="codSeqReg" length="1" />
+		<field name="nsr" length="5" type="int" padding="0" justify="right" />
+		<field name="codSegmento" length="1" />
 		<field name="tipoMov" length="1" />
 		<field name="codInstrMov" length="2" />
 		<field name="codCompens" length="3" />
@@ -55,9 +54,20 @@
 		<field name="usoFebraban" length="10" />
 		<field name="avisoFavor" length="1" />
 		<field name="ocor" length="10" />
-      
     </record>
-    
+
+    <record name="registro_segmento_b" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoB">
+    	<field name="comeco" length="8" />
+    	<field name="sequencialRegistro" length="5" type="int" padding="0" justify="right" />
+    	<field name="codSegmento" length="1" />
+    	<field name="formaIniciacao" length="3" />
+    	<field name="meio" length="15" />
+    	<field name="informacao10Txid" length="35" />
+    	<field name="informacao11IdPagamento" length="60" />
+    	<field name="informacao12IdFavorecidoChavePix" length="99" />
+    	<field name="fim" length="14" />
+    </record>
+        
     <record name="trailer_lote" class="br.com.firstdecision.powercenter.remessa.TrailerLote">
     	<field name="comeco" length="17" />
     	<field name="quantidade" length="6" type="int" padding="0" justify="right" />

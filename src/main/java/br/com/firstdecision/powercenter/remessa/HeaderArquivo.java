@@ -17,7 +17,7 @@ public class HeaderArquivo {
 	public HeaderArquivo(String convenio, String nsa) {
 		this.convenio = convenio;
 		this.nsa = nsa;
-		this.dataHora = DataUtil.localDateTimeToString(LocalDateTime.now(), DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		this.dataHora = DataUtil.localDateTimeToString(LocalDateTime.now(), DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
 	}
 
 	public String getComeco() {

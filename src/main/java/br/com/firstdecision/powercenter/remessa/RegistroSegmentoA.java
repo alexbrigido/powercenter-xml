@@ -7,19 +7,19 @@ import br.com.firstdecision.powercenter.util.DataUtil;
 
 public class RegistroSegmentoA {
 
-	private String filler1 = " ";
-	private String lote = " ";
-	private String codSeqReg = " ";
-	private String tipoMov = " ";
-	private String codInstrMov = " ";
+	private String filler1 = "10400013";
+	private Integer nsr;
+	private String codSegmento = "A";
+	private String tipoMov = "1";
+	private String codInstrMov = "00";
 	
-	private String codCompens = " ";
-	private String bancoFavorecido = " ";
+	private String codCompens = "009";
+	private String bancoFavorecido = "104";
 	
-	private String codAgencia = " ";
-	private String dvAgencia = " ";
-	private String numConta = " ";
-	private String devNumConta = " ";
+	private String codAgencia = "00664";
+	private String dvAgencia = "5";
+	private String numConta = "000000140382";
+	private String devNumConta = "5";
 	private String dvAgeConta = " ";
 	
 	private String nomeFavor = " ";
@@ -62,17 +62,17 @@ public class RegistroSegmentoA {
 	public void setFiller1(String filler1) {
 		this.filler1 = filler1;
 	}
-	public String getLote() {
-		return lote;
+	public Integer getNsr() {
+		return nsr;
 	}
-	public void setLote(String lote) {
-		this.lote = lote;
+	public void setNsr(Integer nsr) {
+		this.nsr = nsr;
 	}
-	public String getCodSeqReg() {
-		return codSeqReg;
+	public String getCodSegmento() {
+		return codSegmento;
 	}
-	public void setCodSeqReg(String codSeqReg) {
-		this.codSeqReg = codSeqReg;
+	public void setCodSegmento(String codSegmento) {
+		this.codSegmento = codSegmento;
 	}
 	public String getTipoMov() {
 		return tipoMov;
