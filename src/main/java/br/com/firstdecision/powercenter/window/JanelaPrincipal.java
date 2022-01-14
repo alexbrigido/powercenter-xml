@@ -124,6 +124,10 @@ public class JanelaPrincipal extends JFrame {
 			private void perform(ActionEvent evt) {
 
 					try {
+						validar("Convênio", jTextConvenio.getText());
+						validar("Data Pagamento", jFormattedTextData.getText());
+						validar("NSA", jTextNsa.getText());
+						validar("Quantidade de Registros", jTextQtde.getText());
 						
 						LeitorExcel excel = new LeitorExcel();
 						GeradorRemessa remessa = new GeradorRemessa();
@@ -135,10 +139,6 @@ public class JanelaPrincipal extends JFrame {
 						List<CamposChavePixExcel> chaves = excel.gerarListaCampos(fileExcel);
 
 						System.out.println("Gerando Remessa...");
-						validar("Convênio", jTextConvenio.getText());
-						validar("Data Pagamento", jFormattedTextData.getText());
-						validar("NSA", jTextNsa.getText());
-						validar("Quantidade de Registros", jTextQtde.getText());
 						String convenio = StringUtil.completeAEsquerda(jTextConvenio.getText(), 6, '0');
 						String compromisso = StringUtil.completeAEsquerda(jTextCompromisso.getText(), 4, '0');
 						String data = DataUtil.removerBarras(jFormattedTextData.getText());
