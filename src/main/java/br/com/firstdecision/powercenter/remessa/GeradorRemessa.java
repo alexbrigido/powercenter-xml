@@ -59,7 +59,7 @@ public class GeradorRemessa {
         	regb.setFormaIniciacao(resolverIniciacao(chave.getTipo()));
         	regb.setInformacao10Txid("004".equals(regb.getFormaIniciacao()) ? " " : chave.getTipo());
         	regb.setInformacao11IdPagamento(resolverCampoB11(regb.getFormaIniciacao(), chave.getTipo()));
-        	regb.setInformacao12IdFavorecidoChavePix(chave.getChave());
+        	regb.setInformacao12IdFavorecidoChavePix(resolverChavePix(chave.getTipo(), chave.getChave()));
 			regb.setSequencialRegistro(++sequencial);
         	out.write("registro_segmento_b", regb);
         	sequencial++;
@@ -102,6 +102,16 @@ public class GeradorRemessa {
 		case 5:return "CONTA";
 		default: return "CONTA";
 		}
+	}
+	
+	private String resolverChavePix(String tipo, String chave) {
+		if(tipo.contains("CPF")) {
+			return StringUtil.completeAEsquerda(chave, 11, '0');
+		}
+		if(tipo.contains("CNPJ")) {
+			return StringUtil.completeAEsquerda(chave, 14, '0');
+		}
+		return chave;
 	}
 	
 }

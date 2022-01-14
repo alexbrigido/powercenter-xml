@@ -80,7 +80,7 @@ public class JanelaPrincipal extends JFrame {
         jTextTipoCompromisso = new JTextField(new LengthRestrictedDocument(2), "01", 0);
         jFormattedTextData = new JFormattedTextField(mascaraData);
         jTextNsa = new JTextField(new LengthRestrictedDocument(6), "000001", 0);
-        jTextQtde = new JTextField(new LengthRestrictedDocument(5), "10", 0);
+        jTextQtde = new JTextField(new LengthRestrictedDocument(5), "15", 0);
         jTextConvenio.setBounds(240,40,100,20);
         jTextCompromisso.setBounds(240,80,100,20);
         jTextTipoCompromisso.setBounds(240,120,100,20);
