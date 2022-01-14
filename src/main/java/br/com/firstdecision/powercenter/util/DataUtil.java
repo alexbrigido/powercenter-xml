@@ -182,10 +182,14 @@ public class DataUtil {
 	}
 
 	public static String removerBarras(String data) {
-		if(data == null || data.trim().isEmpty()) {
+		if(data == null) {
 			return localDateToString(LocalDate.now(), DateTimeFormatter.ofPattern("ddMMyyyy"));
 		}
-		return data.replaceAll("/", "");
+		String nova = data.replaceAll("\\D", "");
+		if(nova.isEmpty()) {
+			return localDateToString(LocalDate.now(), DateTimeFormatter.ofPattern("ddMMyyyy"));
+		}
+		return nova;
 	}
 
 }

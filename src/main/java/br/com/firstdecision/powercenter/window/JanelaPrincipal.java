@@ -4,7 +4,6 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -17,6 +16,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import br.com.firstdecision.powercenter.remessa.GeradorRemessa;
@@ -27,12 +27,12 @@ import br.com.firstdecision.powercenter.xml.LeitorExcel;
 
 public class JanelaPrincipal extends JFrame {
 
-    JFormattedTextField jFormattedTextConvenio;
-    JFormattedTextField jFormattedTextCompromisso; 
-    JFormattedTextField jFormattedTextTipoCompromisso; 
+    JTextField jTextConvenio;
+    JTextField jTextCompromisso; 
+    JTextField jTextTipoCompromisso; 
     JFormattedTextField jFormattedTextData;
-    JFormattedTextField jFormattedTextNsa;
-    JFormattedTextField jFormattedTextQtde;
+    JTextField jTextNsa;
+    JTextField jTextQtde;
     
 	public void init() {
 		Container janela = getContentPane();
@@ -75,25 +75,20 @@ public class JanelaPrincipal extends JFrame {
 		
 		
         //Seta as máscaras nos objetos JFormattedTextField
-        jFormattedTextConvenio = new JFormattedTextField(mascaraConvenio);
-        jFormattedTextCompromisso = new JFormattedTextField(mascaraCompromisso);
-        jFormattedTextTipoCompromisso = new JFormattedTextField(mascaraTipoComp);
+        jTextConvenio = new JTextField(new LengthRestrictedDocument(6), "600500", 0);
+        jTextCompromisso = new JTextField(new LengthRestrictedDocument(4), "0001", 0);
+        jTextTipoCompromisso = new JTextField(new LengthRestrictedDocument(2), "01", 0);
         jFormattedTextData = new JFormattedTextField(mascaraData);
-        jFormattedTextNsa = new JFormattedTextField();
-        jFormattedTextQtde = new JFormattedTextField();
-        jFormattedTextConvenio.setBounds(240,40,100,20);
-        jFormattedTextCompromisso.setBounds(240,80,100,20);
-        jFormattedTextTipoCompromisso.setBounds(240,120,100,20);
+        jTextNsa = new JTextField(new LengthRestrictedDocument(6), "000001", 0);
+        jTextQtde = new JTextField(new LengthRestrictedDocument(6), "10", 0);
+        jTextConvenio.setBounds(240,40,100,20);
+        jTextCompromisso.setBounds(240,80,100,20);
+        jTextTipoCompromisso.setBounds(240,120,100,20);
         jFormattedTextData.setBounds(240,160,100,20);
-        jFormattedTextNsa.setBounds(240,200,100,20);
-        jFormattedTextQtde.setBounds(240,240,100,20);
-        
-        // valores default
-        jFormattedTextConvenio.setText("600500");
-        jFormattedTextCompromisso.setText("0001");
-        jFormattedTextTipoCompromisso.setText("01");
-        jFormattedTextNsa.setText("000001");
-        jFormattedTextQtde.setText("10");
+        jTextNsa.setBounds(240,200,100,20);
+        jTextQtde.setBounds(240,240,100,20);
+
+        jTextQtde.setToolTipText("Quantidade de registros A/B a serem gerados.");
         jFormattedTextData.setText(DataUtil.localDateToString(LocalDate.now(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         //Adiciona os rótulos e os campos de textos com máscaras na tela
@@ -103,12 +98,12 @@ public class JanelaPrincipal extends JFrame {
         janela.add(labelData);
         janela.add(labelNsa);
         janela.add(labelQtde);
-        janela.add(jFormattedTextConvenio);
-        janela.add(jFormattedTextTipoCompromisso);
-        janela.add(jFormattedTextCompromisso);
+        janela.add(jTextConvenio);
+        janela.add(jTextTipoCompromisso);
+        janela.add(jTextCompromisso);
         janela.add(jFormattedTextData);
-        janela.add(jFormattedTextNsa);
-        janela.add(jFormattedTextQtde);
+        janela.add(jTextNsa);
+        janela.add(jTextQtde);
         
         JButton botao = new JButton("GERAR");
         botao.setBounds(150, 280, 100, 20);
@@ -140,11 +135,15 @@ public class JanelaPrincipal extends JFrame {
 						List<CamposChavePixExcel> chaves = excel.gerarListaCampos(fileExcel);
 
 						System.out.println("Gerando Remessa...");
-						String convenio = StringUtil.completeAEsquerda(jFormattedTextConvenio.getText(), 6, '0');
-						String compromisso = StringUtil.completeAEsquerda(jFormattedTextCompromisso.getText(), 4, '0');
+						validar("Convênio", jTextConvenio.getText());
+						validar("Data Pagamento", jFormattedTextData.getText());
+						validar("NSA", jTextNsa.getText());
+						validar("Quantidade de Registros", jTextQtde.getText());
+						String convenio = StringUtil.completeAEsquerda(jTextConvenio.getText(), 6, '0');
+						String compromisso = StringUtil.completeAEsquerda(jTextCompromisso.getText(), 4, '0');
 						String data = DataUtil.removerBarras(jFormattedTextData.getText());
-						String nsa = StringUtil.completeAEsquerda(jFormattedTextNsa.getText(), 6, '0');
-						String qtde = jFormattedTextQtde.getText();
+						String nsa = StringUtil.completeAEsquerda(jTextNsa.getText(), 6, '0');
+						String qtde = jTextQtde.getText();
 						remessa.gerarRemessa(chaves, convenio, compromisso, data, nsa, qtde);
 						
 						JOptionPane.showMessageDialog(null, "REMESSA GERADA COM SUCESSO.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
@@ -152,6 +151,12 @@ public class JanelaPrincipal extends JFrame {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 						e.printStackTrace();
 					}
+			}
+			
+			private void validar(String campo, String valor) {
+				if(StringUtil.isNullOrEmpty(valor)) {
+					throw new RuntimeException("O campo "+campo+" é obrigatório.");
+				}
 			}
 		};
 	}
