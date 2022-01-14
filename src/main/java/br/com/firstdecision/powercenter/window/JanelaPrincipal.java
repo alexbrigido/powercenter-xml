@@ -80,7 +80,7 @@ public class JanelaPrincipal extends JFrame {
         jTextTipoCompromisso = new JTextField(new LengthRestrictedDocument(2), "01", 0);
         jFormattedTextData = new JFormattedTextField(mascaraData);
         jTextNsa = new JTextField(new LengthRestrictedDocument(6), "000001", 0);
-        jTextQtde = new JTextField(new LengthRestrictedDocument(6), "10", 0);
+        jTextQtde = new JTextField(new LengthRestrictedDocument(5), "10", 0);
         jTextConvenio.setBounds(240,40,100,20);
         jTextCompromisso.setBounds(240,80,100,20);
         jTextTipoCompromisso.setBounds(240,120,100,20);
@@ -88,7 +88,7 @@ public class JanelaPrincipal extends JFrame {
         jTextNsa.setBounds(240,200,100,20);
         jTextQtde.setBounds(240,240,100,20);
 
-        jTextQtde.setToolTipText("Quantidade de registros A/B a serem gerados.");
+        jTextQtde.setToolTipText("Quantidade de registros A/B a serem gerados. Máximo de 49.999.");
         jFormattedTextData.setText(DataUtil.localDateToString(LocalDate.now(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         //Adiciona os rótulos e os campos de textos com máscaras na tela
@@ -128,6 +128,7 @@ public class JanelaPrincipal extends JFrame {
 						validar("Data Pagamento", jFormattedTextData.getText());
 						validar("NSA", jTextNsa.getText());
 						validar("Quantidade de Registros", jTextQtde.getText());
+						validarLimitQtde(jTextQtde.getText());
 						
 						LeitorExcel excel = new LeitorExcel();
 						GeradorRemessa remessa = new GeradorRemessa();
@@ -156,6 +157,13 @@ public class JanelaPrincipal extends JFrame {
 			private void validar(String campo, String valor) {
 				if(StringUtil.isNullOrEmpty(valor)) {
 					throw new RuntimeException("O campo "+campo+" é obrigatório.");
+				}
+			}
+			
+			private void validarLimitQtde(String qtde) {
+				int valor = Integer.parseInt(qtde);
+				if(valor > 49999) {
+					throw new RuntimeException("A quantidade máxima de registros é de 49999.");
 				}
 			}
 		};

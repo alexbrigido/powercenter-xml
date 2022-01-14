@@ -71,7 +71,7 @@
     <record name="trailer_lote" class="br.com.firstdecision.powercenter.remessa.TrailerLote">
     	<field name="comeco" length="17" />
     	<field name="quantidade" length="6" type="int" padding="0" justify="right" />
-    	<field name="somaValores" length="18" type="int" padding="0" justify="right" />
+    	<field name="somaValores" length="18" type="long" padding="0" justify="right" />
     	<field name="fim" length="199" />
     </record>
     

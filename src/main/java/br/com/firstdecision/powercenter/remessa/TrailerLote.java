@@ -4,10 +4,10 @@ public class TrailerLote {
 
 	private String comeco = "10400015         ";
 	private Integer quantidade;
-	private Integer somaValores;
+	private Long somaValores;
 	private String fim = "000000000000000000000000";
 	
-	public TrailerLote(int quant, int soma) {
+	public TrailerLote(int quant, long soma) {
 		this.quantidade = quant;
 		this.somaValores = soma;
 	}
@@ -30,10 +30,10 @@ public class TrailerLote {
 	public void setFim(String fim) {
 		this.fim = fim;
 	}
-	public Integer getSomaValores() {
+	public Long getSomaValores() {
 		return somaValores;
 	}
-	public void setSomaValores(Integer somaValores) {
+	public void setSomaValores(Long somaValores) {
 		this.somaValores = somaValores;
 	}
 	

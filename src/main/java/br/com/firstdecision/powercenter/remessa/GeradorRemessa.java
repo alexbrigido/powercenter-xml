@@ -28,9 +28,9 @@ public class GeradorRemessa {
         out.write("header_arquivo", new HeaderArquivo(convenio, nsa));
         out.write("header_lote", new HeaderLote(convenio));
         
-        Integer quantidade = Integer.parseInt(qtde.trim());
-        Integer sequencial = 1;
-        Integer soma = 0;
+        int quantidade = Integer.parseInt(qtde.trim());
+        int sequencial = 1;
+        long soma = 0L;
         for(int i=0; i<quantidade; i++) {
         	CamposChavePixExcel chave = getChave(chaves, i);
         	
