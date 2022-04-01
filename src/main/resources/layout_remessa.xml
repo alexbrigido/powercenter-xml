@@ -67,6 +67,37 @@
     	<field name="informacao12IdFavorecidoChavePix" length="99" />
     	<field name="fim" length="14" />
     </record>
+    
+    <record name="registro_segmento_j" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoJ">
+		<field name="codigoBanco" 		length="3" type="int" padding="0" justify="right" />
+		<field name="loteServico" 		length="4" type="int" padding="0" justify="right" />
+		<field name="codigoRegistro" 	length="1" type="int" padding="0" justify="right" />
+		<field name="nsr" 				length="5" type="long" padding="0" justify="right"/>
+		<field name="codigoSegmento" 	length="1" />
+		<field name="tipoMovimento" 	length="1" type="int" />
+		<field name="codMovimento" 		length="2" type="int" />
+		<field name="bancoDestino" 		length="3" type="int" />
+		<field name="codMoeda" 			length="1" type="int" />
+		<field name="dvCodigoBarras" 	length="1" type="int" />
+		<field name="fatorVencimento" 	length="4" type="int" />
+		<field name="valorDocumento" 	length="10" type="long" padding="0" justify="right" />
+		<field name="campoLivre" 		length="25" />
+		<field name="nomeCedente" 		length="30" />
+		<field name="dataVencimento" 	length="8"  />
+		<field name="valorTitulo" 		length="15" type="long" padding="0" justify="right" />
+		<field name="valorDescontoAbatimento" length="15" type="long" padding="0" justify="right" />
+		<field name="valorMoraMulta" 	length="15" type="long" padding="0" justify="right" />
+		<field name="dataPagamento" 	length="8" />
+		<field name="valorPagamento" 	length="15" type="long" padding="0" justify="right" />
+		<field name="quantidadeMoeda" 	length="15" type="long" padding="0" justify="right" />
+		<field name="numeroDocumentoAtribuidoEmpresa" length="6"  />
+		<field name="filler1" 			length="14" />
+		<field name="numeroDocumentoAtribuidoBanco" length="9" type="long" padding="0" justify="right" />
+		<field name="filler2" 			length="11" />
+		<field name="codigoMoeda" 		length="2" type="long" padding="0" justify="right" />
+		<field name="usoFebraban" 		length="6" type="int" />
+		<field name="ocorrenciasRetorno" length="10" />
+    </record>
         
     <record name="trailer_lote" class="br.com.firstdecision.powercenter.remessa.TrailerLote">
     	<field name="comeco" length="17" />
