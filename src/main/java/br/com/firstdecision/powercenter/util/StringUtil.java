@@ -91,6 +91,10 @@ public class StringUtil {
         return objeto == null ? null : objeto.toString();
     }
 
+    public static String zeroEsquerda(String value, int quantidadeMax) {
+    	return completeAEsquerda(value, quantidadeMax, '0');
+    }
+    
     public static String completeAEsquerda(String value, int quantidadeMax, char c) {
         if (value == null || value.trim().replaceAll("_", "").length() >= quantidadeMax) {
             return value;

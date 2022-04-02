@@ -16,8 +16,8 @@ public class CodigoBarrasUtil {
 		String carteira = "1"; //
 		String emissao = "4"; // cedente
 		String nossoNumero = "222333777777777";
-		double valor = 321.12; // sempre duas casas decimais
-		String vencimento = "23/08/2006";
+		long valor = 49090L; // sempre duas casas decimais
+		String vencimento = "23/06/2022";
 		int fator = fatorVencimento(vencimento);
 		String nossoNumeroCompleto = carteira + emissao + nossoNumero;
 		String cedente = "005507";
@@ -26,24 +26,21 @@ public class CodigoBarrasUtil {
 		String codigoBarras = montarCodigoBarras(banco, moeda, fator, valor, campoLivre);
 
 		// vamos mostrar o resultado
-		System.out.println("O código de barras oompleto é: " + codigoBarras);
+		System.out.println("O código de barras completo é: " + codigoBarras);
 	}
 
 	// função que monta o código de barras
-	public static String montarCodigoBarras(String banco, String moeda, int fator, double valor, String campoLivre) {
+	public static String montarCodigoBarras(String banco, String moeda, int fator, long valor, String campoLivre) {
 
 		// precisamos tratar o valor do título
-		NumberFormat nf = NumberFormat.getInstance();
-		String strValor = nf.format(valor);
-		strValor = strValor.replaceAll("\\.", "");
-		strValor = strValor.replaceAll(",", "");
-		strValor = String.format("%1$10s", strValor).replace(' ', '0');
-		System.out.println(strValor);
+//		NumberFormat nf = NumberFormat.getInstance();
+//		String strValor = nf.format(valor);
+//		strValor = strValor.replaceAll("\\.", "");
+//		strValor = strValor.replaceAll(",", "");
+		String strValor = StringUtil.zeroEsquerda(String.valueOf(valor), 10) ;//String.format("%1$10s", strValor).replace(' ', '0');
 
 		// código de barras provisório
 		String codigoBarras = banco + moeda + fator + strValor + campoLivre;
-
-		System.out.println("O código de barras provisório é: " + codigoBarras);
 
 		// vamos calcular o dígito verificador
 		int dvCodigoBarras = dvCodigoBarras(codigoBarras);

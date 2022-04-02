@@ -10,12 +10,14 @@ public class RegistroSegmentoJ {
 	private String codigoSegmento = "J";
 	private Integer tipoMovimento = 0; // 0=inclusao; 9=exclusao
 	private Integer codMovimento;
+	// inico codigo de barras 44
 	private Integer bancoDestino;
-	private Integer codMoeda;
+	private Integer codMoeda = 9;
 	private Integer dvCodigoBarras;
 	private Integer fatorVencimento;
 	private Long valorDocumento;
 	private String campoLivre;
+	// fim codigo de barras
 	private String nomeCedente;
 	private String dataVencimento;
 	private Long valorTitulo;

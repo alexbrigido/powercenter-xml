@@ -98,7 +98,47 @@
 		<field name="usoFebraban" 		length="6" type="int" />
 		<field name="ocorrenciasRetorno" length="10" />
     </record>
+
+    <record name="registro_segmento_j52" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoJ52">
+		<field name="codigoBanco" 		length="3" type="int" padding="0" justify="right" />
+		<field name="loteServico" 		length="4" type="int" padding="0" justify="right" />
+		<field name="codigoRegistro" 	length="1" type="int" padding="0" justify="right" />
+		<field name="nsr" 				length="5" type="long" padding="0" justify="right"/>
+		<field name="codigoSegmento" 	length="1" />
+		<field name="usoExclusioFebraban" 	length="1" type="int" />
+		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
+		<field name="identificacaoRegistroOpcional" length="2" type="int" />
+		<field name="tipoInscricaoPagador" length="1" type="int" />
+		<field name="numeroInscricaoPagador" length="15" type="long" padding="0" justify="right" />
+		<field name="nomePagador" 	length="40" />
+		<field name="tipoInscricaoBeneficiario" length="1" type="int" />
+		<field name="numeroInscricaoBeneficiario" length="15" type="long" padding="0" justify="right" />
+		<field name="nomeBeneficiario" 	length="40" />
+		<field name="tipoInscricaoPagador2" length="1" type="int" />
+		<field name="numeroInscricaoPagador2" length="15" type="long" padding="0" justify="right" />
+		<field name="nomePagador2" 	length="40" />
+		<field name="exclusivaoFebraban" 	length="53" />
+    </record>
         
+    <record name="registro_segmento_j52pix" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoJ52_PIX">
+		<field name="codigoBanco" 					length="3" type="int" padding="0" justify="right" />
+		<field name="loteServico" 					length="4" type="int" padding="0" justify="right" />
+		<field name="codigoRegistro" 				length="1" type="int" padding="0" justify="right" />
+		<field name="nsr" 							length="5" type="long" padding="0" justify="right"/>
+		<field name="codigoSegmento" 				length="1" />
+		<field name="usoExclusioFebraban" 			length="1" type="int" />
+		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
+		<field name="identificacaoRegistroOpcional" length="2" type="int" />
+		<field name="tipoInscricaoPagador" 			length="1" type="int" />
+		<field name="numeroInscricaoPagador" 		length="15" type="long" padding="0" justify="right" />
+		<field name="nomePagador" 					length="40" />
+		<field name="tipoInscricaoBeneficiario" 	length="1" type="int" />
+		<field name="numeroInscricaoBeneficiario" 	length="15" type="long" padding="0" justify="right" />
+		<field name="nomeBeneficiario" 				length="40" />
+		<field name="chavePagamentoURL" 			length="79" />
+		<field name="txid" 							length="30" />
+    </record>
+    
     <record name="trailer_lote" class="br.com.firstdecision.powercenter.remessa.TrailerLote">
     	<field name="comeco" length="17" />
     	<field name="quantidade" length="6" type="int" padding="0" justify="right" />

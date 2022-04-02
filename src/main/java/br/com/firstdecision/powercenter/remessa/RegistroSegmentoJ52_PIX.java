@@ -21,6 +21,7 @@ public class RegistroSegmentoJ52_PIX {
 
 	private String chavePagamentoURL;
 	private String txid;
+	
 	public Integer getCodigoBanco() {
 		return codigoBanco;
 	}
