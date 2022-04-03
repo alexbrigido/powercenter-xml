@@ -37,7 +37,7 @@ public class GeradorRemessaBoleto {
         	registro.setNomeCedente(Constantes.favorecidos.get(RandomUtil.random(Constantes.favorecidos.size())));
         	registro.setDataPagamento(dataPagamento);
         	registro.setDataVencimento(dataVencimento);
-        	Integer val = RandomUtil.random(100000);
+        	Integer val = RandomUtil.random(1000000);
         	String valor = StringUtil.completeAEsquerda(String.valueOf(val), 15, '0');
         	soma+=val;
         	
@@ -64,4 +64,12 @@ public class GeradorRemessaBoleto {
         out.close();
 	}
 	
+	public static void main(String[] args) {
+		GeradorRemessaBoleto g = new GeradorRemessaBoleto();
+		try {
+			g.gerarRemessa("600500", "0001", "02/04/2022", "20/04/2022", "000012", "2", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

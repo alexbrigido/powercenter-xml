@@ -72,7 +72,7 @@
 		<field name="codigoBanco" 		length="3" type="int" padding="0" justify="right" />
 		<field name="loteServico" 		length="4" type="int" padding="0" justify="right" />
 		<field name="codigoRegistro" 	length="1" type="int" padding="0" justify="right" />
-		<field name="nsr" 				length="5" type="long" padding="0" justify="right"/>
+		<field name="nsr" 				length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 	length="1" />
 		<field name="tipoMovimento" 	length="1" type="int" />
 		<field name="codMovimento" 		length="2" type="int" />
@@ -94,8 +94,8 @@
 		<field name="filler1" 			length="14" />
 		<field name="numeroDocumentoAtribuidoBanco" length="9" type="long" padding="0" justify="right" />
 		<field name="filler2" 			length="11" />
-		<field name="codigoMoeda" 		length="2" type="long" padding="0" justify="right" />
-		<field name="usoFebraban" 		length="6" type="int" />
+		<field name="codigoMoeda" 		length="2" type="int" padding="0" justify="right" />
+		<field name="usoFebraban" 		length="6" />
 		<field name="ocorrenciasRetorno" length="10" />
     </record>
 
@@ -105,7 +105,7 @@
 		<field name="codigoRegistro" 	length="1" type="int" padding="0" justify="right" />
 		<field name="nsr" 				length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 	length="1" />
-		<field name="usoExclusioFebraban" 	length="1" type="int" />
+		<field name="usoExclusioFebraban" 	length="1" />
 		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
 		<field name="identificacaoRegistroOpcional" length="2" type="int" />
 		<field name="tipoInscricaoPagador" length="1" type="int" />
@@ -117,7 +117,7 @@
 		<field name="tipoInscricaoPagador2" length="1" type="int" />
 		<field name="numeroInscricaoPagador2" length="15" type="long" padding="0" justify="right" />
 		<field name="nomePagador2" 	length="40" />
-		<field name="exclusivaoFebraban" 	length="53" />
+		<field name="exclusivaoFebraban" length="53" />
     </record>
         
     <record name="registro_segmento_j52pix" class="br.com.firstdecision.powercenter.remessa.RegistroSegmentoJ52_PIX">
@@ -126,7 +126,7 @@
 		<field name="codigoRegistro" 				length="1" type="int" padding="0" justify="right" />
 		<field name="nsr" 							length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 				length="1" />
-		<field name="usoExclusioFebraban" 			length="1" type="int" />
+		<field name="usoExclusioFebraban" 			length="1" />
 		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
 		<field name="identificacaoRegistroOpcional" length="2" type="int" />
 		<field name="tipoInscricaoPagador" 			length="1" type="int" />

@@ -5,18 +5,18 @@ public class RegistroSegmentoJ52_PIX {
 	private Integer codigoBanco = 104;
 	private Integer loteServico;
 	private Integer codigoRegistro = 3;
-	private Long nsr;
+	private Integer nsr;
 	private String codigoSegmento = "J";
 	private String usoExclusioFebraban = " ";
 	private Integer codigoMovimenoRemessa;
 	private Integer identificacaoRegistroOpcional = 52;
 	
 	private Integer tipoInscricaoPagador;
-	private Integer numeroInscricaoPagador;
+	private Long numeroInscricaoPagador;
 	private String nomePagador;
 	
 	private Integer tipoInscricaoBeneficiario;
-	private Integer numeroInscricaoBeneficiario;
+	private Long numeroInscricaoBeneficiario;
 	private String nomeBeneficiario;
 
 	private String chavePagamentoURL;
@@ -40,10 +40,10 @@ public class RegistroSegmentoJ52_PIX {
 	public void setCodigoRegistro(Integer codigoRegistro) {
 		this.codigoRegistro = codigoRegistro;
 	}
-	public Long getNsr() {
+	public Integer getNsr() {
 		return nsr;
 	}
-	public void setNsr(Long nsr) {
+	public void setNsr(Integer nsr) {
 		this.nsr = nsr;
 	}
 	public String getCodigoSegmento() {
@@ -76,10 +76,10 @@ public class RegistroSegmentoJ52_PIX {
 	public void setTipoInscricaoPagador(Integer tipoInscricaoPagador) {
 		this.tipoInscricaoPagador = tipoInscricaoPagador;
 	}
-	public Integer getNumeroInscricaoPagador() {
+	public Long getNumeroInscricaoPagador() {
 		return numeroInscricaoPagador;
 	}
-	public void setNumeroInscricaoPagador(Integer numeroInscricaoPagador) {
+	public void setNumeroInscricaoPagador(Long numeroInscricaoPagador) {
 		this.numeroInscricaoPagador = numeroInscricaoPagador;
 	}
 	public String getNomePagador() {
@@ -94,10 +94,10 @@ public class RegistroSegmentoJ52_PIX {
 	public void setTipoInscricaoBeneficiario(Integer tipoInscricaoBeneficiario) {
 		this.tipoInscricaoBeneficiario = tipoInscricaoBeneficiario;
 	}
-	public Integer getNumeroInscricaoBeneficiario() {
+	public Long getNumeroInscricaoBeneficiario() {
 		return numeroInscricaoBeneficiario;
 	}
-	public void setNumeroInscricaoBeneficiario(Integer numeroInscricaoBeneficiario) {
+	public void setNumeroInscricaoBeneficiario(Long numeroInscricaoBeneficiario) {
 		this.numeroInscricaoBeneficiario = numeroInscricaoBeneficiario;
 	}
 	public String getNomeBeneficiario() {
