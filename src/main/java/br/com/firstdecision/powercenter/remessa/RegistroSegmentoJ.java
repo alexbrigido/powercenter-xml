@@ -6,7 +6,7 @@ public class RegistroSegmentoJ {
 	private Integer codigoBanco = 104;
 	private Integer loteServico;
 	private Integer codigoRegistro = 3;
-	private Long nsr;
+	private Integer nsr;
 	private String codigoSegmento = "J";
 	private Integer tipoMovimento = 0; // 0=inclusao; 9=exclusao
 	private Integer codMovimento;
@@ -53,10 +53,10 @@ public class RegistroSegmentoJ {
 	public void setCodigoRegistro(Integer codigoRegistro) {
 		this.codigoRegistro = codigoRegistro;
 	}
-	public Long getNsr() {
+	public Integer getNsr() {
 		return nsr;
 	}
-	public void setNsr(Long nsr) {
+	public void setNsr(Integer nsr) {
 		this.nsr = nsr;
 	}
 	public String getCodigoSegmento() {

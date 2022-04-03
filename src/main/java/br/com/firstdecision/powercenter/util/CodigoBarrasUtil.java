@@ -23,15 +23,26 @@ public class CodigoBarrasUtil {
 		String cedente = "005507";
 		int dvCedente = dvCodigoCedente(cedente);
 		String campoLivre = montarCampoLivre(cedente, dvCedente, nossoNumeroCompleto);
-		String codigoBarras = montarCodigoBarras(banco, moeda, fator, valor, campoLivre);
+		String codigoBarras = montarCodigoBarras( vencimento,  valor);
 
 		// vamos mostrar o resultado
 		System.out.println("O código de barras completo é: " + codigoBarras);
 	}
 
 	// função que monta o código de barras
-	public static String montarCodigoBarras(String banco, String moeda, int fator, long valor, String campoLivre) {
+	public static String montarCodigoBarras(String vencimento, long valor) {
 
+		String banco = "104";
+		String moeda = "9";
+		String carteira = "1"; //
+		String emissao = "4"; // cedente
+		String nossoNumero = "222333777777777";
+		int fator = fatorVencimento(vencimento);
+		String nossoNumeroCompleto = carteira + emissao + nossoNumero;
+		String cedente = "005507";
+		int dvCedente = dvCodigoCedente(cedente);
+		String campoLivre = montarCampoLivre(cedente, dvCedente, nossoNumeroCompleto);
+		
 		// precisamos tratar o valor do título
 //		NumberFormat nf = NumberFormat.getInstance();
 //		String strValor = nf.format(valor);

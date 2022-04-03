@@ -103,7 +103,7 @@
 		<field name="codigoBanco" 		length="3" type="int" padding="0" justify="right" />
 		<field name="loteServico" 		length="4" type="int" padding="0" justify="right" />
 		<field name="codigoRegistro" 	length="1" type="int" padding="0" justify="right" />
-		<field name="nsr" 				length="5" type="long" padding="0" justify="right"/>
+		<field name="nsr" 				length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 	length="1" />
 		<field name="usoExclusioFebraban" 	length="1" type="int" />
 		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
@@ -124,7 +124,7 @@
 		<field name="codigoBanco" 					length="3" type="int" padding="0" justify="right" />
 		<field name="loteServico" 					length="4" type="int" padding="0" justify="right" />
 		<field name="codigoRegistro" 				length="1" type="int" padding="0" justify="right" />
-		<field name="nsr" 							length="5" type="long" padding="0" justify="right"/>
+		<field name="nsr" 							length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 				length="1" />
 		<field name="usoExclusioFebraban" 			length="1" type="int" />
 		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
