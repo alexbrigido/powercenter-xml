@@ -5,9 +5,9 @@ import java.util.Random;
 public class RandomUtil {
 
 	
-	public static Integer random(int limit) {
+	public static int random(int limit) {
 		Random random = new Random();
 		return random.nextInt(limit);
 	}
-	
+
 }

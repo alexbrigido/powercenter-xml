@@ -75,13 +75,8 @@
 		<field name="nsr" 				length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 	length="1" />
 		<field name="tipoMovimento" 	length="1" type="int" />
-		<field name="codMovimento" 		length="2" type="int" />
-		<field name="bancoDestino" 		length="3" type="int" />
-		<field name="codMoeda" 			length="1" type="int" />
-		<field name="dvCodigoBarras" 	length="1" type="int" />
-		<field name="fatorVencimento" 	length="4" type="int" />
-		<field name="valorDocumento" 	length="10" type="long" padding="0" justify="right" />
-		<field name="campoLivre" 		length="25" />
+		<field name="codMovimento" 		length="2" type="int" padding="0" justify="right" />
+		<field name="codigoBarras" 		length="44" />
 		<field name="nomeCedente" 		length="30" />
 		<field name="dataVencimento" 	length="8"  />
 		<field name="valorTitulo" 		length="15" type="long" padding="0" justify="right" />
@@ -106,7 +101,7 @@
 		<field name="nsr" 				length="5" type="int" padding="0" justify="right"/>
 		<field name="codigoSegmento" 	length="1" />
 		<field name="usoExclusioFebraban" 	length="1" />
-		<field name="codigoMovimenoRemessa" 		length="2" type="int" />
+		<field name="codigoMovimenoRemessa" 		length="2" />
 		<field name="identificacaoRegistroOpcional" length="2" type="int" />
 		<field name="tipoInscricaoPagador" length="1" type="int" />
 		<field name="numeroInscricaoPagador" length="15" type="long" padding="0" justify="right" />

@@ -3,12 +3,12 @@ package br.com.firstdecision.powercenter.remessa;
 public class RegistroSegmentoJ52 {
 
 	private Integer codigoBanco = 104;
-	private Integer loteServico;
+	private Integer loteServico = 1;
 	private Integer codigoRegistro = 3;
 	private Integer nsr;
 	private String codigoSegmento = "J";
 	private String usoExclusioFebraban = " ";
-	private Integer codigoMovimenoRemessa;
+	private String codigoMovimenoRemessa = " ";
 	private Integer identificacaoRegistroOpcional = 52;
 	
 	private Integer tipoInscricaoPagador;
@@ -19,9 +19,11 @@ public class RegistroSegmentoJ52 {
 	private Long numeroInscricaoBeneficiario;
 	private String nomeBeneficiario;
 	
-	private Integer tipoInscricaoPagador2 = 0;
+	// dados sacador/avalista (cedente responsavel pela emissao do titulo original)
+	private Integer tipoInscricaoPagador2 = 2;
 	private Long numeroInscricaoPagador2 = 0L;
-	private String nomePagador2 = " ";
+	private String nomePagador2 = "CAIXA ECONOMICA FEDERAL";
+	
 	private String exclusivaoFebraban = " ";
 	
 	
@@ -61,10 +63,10 @@ public class RegistroSegmentoJ52 {
 	public void setUsoExclusioFebraban(String usoExclusioFebraban) {
 		this.usoExclusioFebraban = usoExclusioFebraban;
 	}
-	public Integer getCodigoMovimenoRemessa() {
+	public String getCodigoMovimenoRemessa() {
 		return codigoMovimenoRemessa;
 	}
-	public void setCodigoMovimenoRemessa(Integer codigoMovimenoRemessa) {
+	public void setCodigoMovimenoRemessa(String codigoMovimenoRemessa) {
 		this.codigoMovimenoRemessa = codigoMovimenoRemessa;
 	}
 	public Integer getIdentificacaoRegistroOpcional() {

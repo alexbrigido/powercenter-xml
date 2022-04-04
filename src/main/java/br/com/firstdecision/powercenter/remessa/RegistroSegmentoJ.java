@@ -4,35 +4,40 @@ public class RegistroSegmentoJ {
 
 	
 	private Integer codigoBanco = 104;
-	private Integer loteServico;
+	private Integer loteServico = 1;
 	private Integer codigoRegistro = 3;
 	private Integer nsr;
 	private String codigoSegmento = "J";
 	private Integer tipoMovimento = 0; // 0=inclusao; 9=exclusao
-	private Integer codMovimento;
+	private Integer codMovimento = 0; // inclusao de registro detalhe liberado
+	
 	// inico codigo de barras 44
+	/*
 	private Integer bancoDestino;
 	private Integer codMoeda = 9;
 	private Integer dvCodigoBarras;
 	private Integer fatorVencimento;
 	private Long valorDocumento;
 	private String campoLivre;
+	*/
 	// fim codigo de barras
+	private String codigoBarras;
+	
 	private String nomeCedente;
-	private String dataVencimento;
+	private String dataVencimento; // DDMMAAAA
 	private Long valorTitulo;
 	private Long valorDescontoAbatimento;
 	private Long valorMoraMulta;
-	private String dataPagamento;
+	private String dataPagamento; // DDMMAAAA
 	private Long valorPagamento;
 	private Long quantidadeMoeda;
 	private String numeroDocumentoAtribuidoEmpresa;
 	private String filler1;
 	private Long numeroDocumentoAtribuidoBanco;
 	private String filler2;
-	private Integer codigoMoeda;
+	private Integer codigoMoeda = 9;
 	private String usoFebraban;
-	private String ocorrenciasRetorno;
+	private String ocorrenciasRetorno = " ";
 	
 	
 	public Integer getCodigoBanco() {
@@ -77,6 +82,7 @@ public class RegistroSegmentoJ {
 	public void setCodMovimento(Integer codMovimento) {
 		this.codMovimento = codMovimento;
 	}
+	/*
 	public Integer getBancoDestino() {
 		return bancoDestino;
 	}
@@ -113,6 +119,7 @@ public class RegistroSegmentoJ {
 	public void setCampoLivre(String campoLivre) {
 		this.campoLivre = campoLivre;
 	}
+	*/
 	public String getNomeCedente() {
 		return nomeCedente;
 	}
@@ -202,6 +209,12 @@ public class RegistroSegmentoJ {
 	}
 	public void setOcorrenciasRetorno(String ocorrenciasRetorno) {
 		this.ocorrenciasRetorno = ocorrenciasRetorno;
+	}
+	public String getCodigoBarras() {
+		return codigoBarras;
+	}
+	public void setCodigoBarras(String codigoBarras) {
+		this.codigoBarras = codigoBarras;
 	}
 	
 }
